@@ -1,10 +1,2 @@
 <h2>Add A Book Here</h2>
-<%= form_for @book do |f| %>
-    <%=f.label :title %>
-    <%=f.text_field :title %><br>
-    <%=f.label :author%>
-    <%=f.text_field :author%><br>
-    <%=f.label :description%>
-    <%=f.text_area :description%><br>
-    <%=f.submit "Add Book"%>
-<%end%>
+<%= render partial: "form", locals: {book: @book} %>

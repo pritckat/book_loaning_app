@@ -14,4 +14,10 @@ module ApplicationHelper
         end
     end
     
+    def add_home_button
+        if logged_in?
+            link_to "Home", user_path(current_user)
+        end
+    end
+    
 end

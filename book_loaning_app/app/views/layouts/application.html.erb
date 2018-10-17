@@ -14,6 +14,7 @@
   <header>
     <% if current_user%>
       <p>Logged in: <%=current_user.username%>
+      <%= add_home_button %>
       <%= add_logout_button %></p>
     <% end %>
 
