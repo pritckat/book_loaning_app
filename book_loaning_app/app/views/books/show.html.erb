@@ -1,6 +1,8 @@
-Title: <%= @book.title %><br>
-Author: <%= @book.author%><br>
+<h2><%= @book.title %></h2><br>
+By: <%= @book.author%><br>
 Description: <%= @book.description%><br>
-Owned By: <%=@book.user.username%>
-<%= link_to "Edit Book Information", edit_book_path(@book)%>
-<%= link_to "Delete Book", @book, method: :delete %>
+Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
+<%if @book.user == current_user%>
+    <%= link_to "Edit Book Information", edit_book_path(@book)%>
+    <%= link_to "Delete Book", @book, method: :delete %>
+<%end%>
