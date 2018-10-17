@@ -3,3 +3,4 @@ Author: <%= @book.author%><br>
 Description: <%= @book.description%><br>
 Owned By: <%=@book.user.username%>
 <%= link_to "Edit Book Information", edit_book_path(@book)%>
+<%= link_to "Delete Book", @book, method: :delete %>
