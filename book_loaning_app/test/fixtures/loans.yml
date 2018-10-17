@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner_id: 1
+  borrower_id: 1
+  returned: false
+  return_datetime: 2018-10-17 15:45:49
+
+two:
+  owner_id: 1
+  borrower_id: 1
+  returned: false
+  return_datetime: 2018-10-17 15:45:49

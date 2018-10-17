@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_184532) do
+ActiveRecord::Schema.define(version: 2018_10_17_204549) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
     t.text "description"
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "owner_id"
+    t.integer "borrower_id"
+    t.integer "book_id"
+    t.boolean "returned"
+    t.datetime "return_datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

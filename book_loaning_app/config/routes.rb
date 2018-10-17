@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :loans
   resources :books
   root 'welcome#show'
   resources :users
