@@ -2,6 +2,12 @@
 By: <%= @book.author%><br>
 Description: <%= @book.description%><br>
 Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
+<%Loan.all.each do |loan|%>
+    <% if loan.book_id === @book.id%>
+        <%user = User.find(loan.borrower_id)%>
+        <%="Loaned To: #{user.username}"%><br>
+    <%end%>
+<%end%>
 <%if @book.user == current_user%>
     <%="Loan Book"%>
     <%= link_to "Edit Book Information", edit_book_path(@book)%>

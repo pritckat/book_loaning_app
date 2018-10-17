@@ -1,0 +1,5 @@
+<%= form_for @loan do |f|%>
+Return By:<%= f.date_select :return_datetime %>
+Lend To:<%= f.collection_select :borrower_id, User.all, :id, :username %>
+<%= f.submit "Loan Book" %>
+<%end%>
