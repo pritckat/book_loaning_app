@@ -2,3 +2,4 @@ Title: <%= @book.title %><br>
 Author: <%= @book.author%><br>
 Description: <%= @book.description%><br>
 Owned By: <%=@book.user.username%>
+<%= link_to "Edit Book Information", edit_book_path(@book)%>
