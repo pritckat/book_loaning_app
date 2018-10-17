@@ -1,0 +1,12 @@
+<h2>Please Sign In</h2>
+<% if flash.alert %>
+<p>Don't have an account?
+<%= link_to 'Sign Up Here', new_user_path %></p>
+<% end %>
+<%= form_for @user, method: :post, url: login_path do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.submit "Log In"%>
+<% end %>
