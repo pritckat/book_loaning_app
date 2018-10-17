@@ -14,9 +14,11 @@
   <header>
     <% if current_user%>
       <p>Logged in: <%=current_user.username%></p>
+      <p><%= add_logout_button %></p>
     <% end %>
+
   </header>
-  
+
     <%= yield %>
   </body>
 </html>
