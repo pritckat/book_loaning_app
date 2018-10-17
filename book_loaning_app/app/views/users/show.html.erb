@@ -1,1 +1,7 @@
-<%=@user.username%>
+<%=@user.username%><br>
+<h3>Books</h3>
+<ul>
+    <%@user.books.each do |book|%>
+     <%=link_to book.title, book_path(book)%>
+    <%end%>
+</ul>
