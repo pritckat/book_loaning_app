@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-
+    before_action :require_login, only: [:new, :edit, :destroy]
     def new
         @book = Book.new
     end
@@ -17,6 +17,7 @@ class BooksController < ApplicationController
 
     def edit
         @book = Book.find(params[:id])
+        redirect_if_not_book_owner
     end
 
     def update
@@ -27,6 +28,7 @@ class BooksController < ApplicationController
 
     def destroy
         @book = Book.find(params[:id])
+        redirect_if_not_book_owner
         @book.destroy
         redirect_to user_path(current_user)
     end
@@ -36,5 +38,12 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(:title, :author, :description)
-    end    
+    end
+    
+    def redirect_if_not_book_owner
+        if @book.user != current_user
+            flash.alert = "You are not the owner of this book."
+            redirect_to book_path(@book)
+        end
+    end
     end
