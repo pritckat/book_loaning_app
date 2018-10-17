@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   root 'welcome#show'
   resources :users
   
+  resources :books do 
+    resources :loans, only: [:new]
+  end
+
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   delete '/logout' => "sessions#destroy"

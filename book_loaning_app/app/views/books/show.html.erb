@@ -9,7 +9,7 @@ Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
     <%end%>
 <%end%>
 <%if @book.user == current_user%>
-    <%="Loan Book"%>
+    <%= link_to "Loan Book", new_book_loan_path(@book)%>
     <%= link_to "Edit Book Information", edit_book_path(@book)%>
     <%= link_to "Delete Book", @book, method: :delete %>
 <%end%>
