@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
 
     def new
+        redirect_if_book_already_loaned
         @loan = Loan.new(book_id: params[:book_id], owner_id: current_user.id)
     end
 
@@ -17,5 +18,13 @@ class LoansController < ApplicationController
     
     def loan_params
         params.require(:loan).permit(:return_datetime, :borrower_id, :book_id, :owner_id)
+    end
+
+    def redirect_if_book_already_loaned
+        book = Book.find(params[:book_id])
+        if book.loaned?
+            flash.alert = "This book is already loaned to #{book.currently_loaned_to}"
+            redirect_to book_path(book)
+        end
     end
 end

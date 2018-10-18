@@ -4,9 +4,11 @@ Description: <%= @book.description%><br>
 Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
 <%if @book.loaned?%>
     Loaned To: <%=link_to @book.currently_loaned_to, user_path(User.find_by(username: @book.currently_loaned_to))%>
-<%end%>
+<%end%><br>
 <%if @book.user == current_user%>
-    <%= link_to "Loan Book", new_book_loan_path(@book)%>
+    <%if !@book.loaned?%>
+        <%= link_to "Loan Book", new_book_loan_path(@book)%>
+    <%end%>
     <%= link_to "Edit Book Information", edit_book_path(@book)%>
     <%= link_to "Delete Book", @book, method: :delete %>
 <%end%>
