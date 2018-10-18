@@ -36,7 +36,7 @@ class BooksController < ApplicationController
     def return 
         @book = Book.find(params[:id])
         @loan = Loan.find_by(book_id: @book.id, returned: false)
-        if @loan.borrower_id != current_user
+        if @loan.borrower_id != current_user.id
             flash.alert = "You have not borrowed this book."
             redirect_to book_path(@book)
         else
