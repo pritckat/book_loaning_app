@@ -14,6 +14,10 @@ class LoansController < ApplicationController
         redirect_to book_path(@book)
     end
 
+    def index
+        @loans = Loan.all 
+    end
+
 
 
     private

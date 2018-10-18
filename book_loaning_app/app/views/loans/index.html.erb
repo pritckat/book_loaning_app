@@ -1,0 +1,14 @@
+<table>
+    <tr>
+        <th>Book Title</th>
+        <th>Owner</th>
+        <th>Borrowed By</th>
+    </tr>
+    <%@loans.each do |loan|%>
+    <tr>
+        <td><%=loan.book_title%></td>
+        <td><%=loan.owner_name%></td>
+        <td><%=loan.borrower_name%></td>
+    </tr>
+    <%end%>
+</table>
