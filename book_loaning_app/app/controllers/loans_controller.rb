@@ -15,7 +15,12 @@ class LoansController < ApplicationController
     end
 
     def index
-        @loans = Loan.all 
+        if params[:book_id]
+            book = Book.find(params[:book_id])
+            @loans = book.loans
+        else
+            @loans = Loan.all
+        end
     end
 
 
