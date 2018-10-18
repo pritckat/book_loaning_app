@@ -14,6 +14,8 @@ class LoansController < ApplicationController
         redirect_to book_path(@book)
     end
 
+
+
     private
     
     def loan_params
@@ -23,7 +25,7 @@ class LoansController < ApplicationController
     def redirect_if_book_already_loaned
         book = Book.find(params[:book_id])
         if book.loaned?
-            flash.alert = "This book is already loaned to #{book.currently_loaned_to}"
+            flash.alert = "This book is already loaned to #{book.currently_loaned_to}."
             redirect_to book_path(book)
         end
     end
