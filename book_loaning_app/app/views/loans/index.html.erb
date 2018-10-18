@@ -1,14 +1,24 @@
-<table>
+<table border="1">
     <tr>
         <th>Book Title</th>
         <th>Owner</th>
         <th>Borrowed By</th>
+        <th>Borrowed On</th>
+        <th>Due Back</th>
+        <th>Returned On</th>
     </tr>
     <%@loans.each do |loan|%>
     <tr>
         <td><%=loan.book_title%></td>
         <td><%=loan.owner_name%></td>
         <td><%=loan.borrower_name%></td>
+        <td><%=loan.created_at.strftime("%m/%d/%Y")%></td>
+        <td><%=loan.return_datetime.strftime("%m/%d/%Y")%></td>
+        <%if loan.returned%>
+            <td><%=loan.updated_at.strftime("%m/%d/%Y")%></td>
+        <%else%>
+            <td>Not returned</td>
+        <%end%>
     </tr>
     <%end%>
 </table>
