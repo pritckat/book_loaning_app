@@ -1,5 +1,11 @@
 class BooksController < ApplicationController
     before_action :require_login, only: [:new, :edit, :destroy]
+    
+
+    def index
+        @books = Book.all 
+    end
+    
     def new
         @book = Book.new
         build_genres
