@@ -25,11 +25,13 @@ class BooksController < ApplicationController
 
     def edit
         @book = Book.find(params[:id])
+        build_genres
         redirect_if_not_book_owner
     end
 
     def update
         @book = Book.find(params[:id])
+        set_author
         @book.update(book_params)
         redirect_to book_path(@book)
     end
@@ -66,6 +68,16 @@ class BooksController < ApplicationController
         if @book.user != current_user
             flash.alert = "You are not the owner of this book."
             redirect_to book_path(@book)
+        end
+    end
+
+    def set_author
+        @book.author_attributes = (params[:book][:author])
+    end
+
+    def build_genres
+        3.times do 
+            @book.genres.build 
         end
     end
     end
