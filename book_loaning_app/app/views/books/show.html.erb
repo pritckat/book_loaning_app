@@ -8,7 +8,7 @@ Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
 <%end%><br>
 
 <%if @book.loaned? && @book.currently_loaned_to == current_user.username%>
-    <%= link_to "Return Book", return_path(@book)%>
+    <%= link_to "Return Book", return_book_path(@book)%>
 <%end%>
 
 <%if @book.user == current_user%>

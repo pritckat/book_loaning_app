@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   get '/login' => "sessions#new"
   post '/login' => "sessions#create"
   delete '/logout' => "sessions#destroy"
-  get '/books/:id/return' => "books#return", as: 'return'
   get '/auth/:provider/callback' => 'sessions#create'
+
+  resources :books do
+    get 'return', on: :member
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
