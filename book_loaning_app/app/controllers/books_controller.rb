@@ -56,7 +56,7 @@ class BooksController < ApplicationController
 
     def book_params
         params.require(:book).permit(:title, :description,
-            genre_attributes: [:id, :name])
+            genres_attributes: [:id, :name])
     end
     
     def redirect_if_not_book_owner
