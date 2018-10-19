@@ -8,10 +8,10 @@ class LoansController < ApplicationController
 
     def create
         @loan = Loan.new(loan_params)
+        @book = Book.find(@loan.book_id)
+        redirect_if_loaning_to_self
         @loan.returned = false
         @loan.save
-        #raise params
-        @book = Book.find(@loan.book_id)
         redirect_to book_path(@book)
     end
 
@@ -37,6 +37,13 @@ class LoansController < ApplicationController
         if book.loaned?
             flash.alert = "This book is already loaned to #{book.currently_loaned_to}."
             redirect_to book_path(book)
+        end
+    end
+
+    def redirect_if_loaning_to_self
+        if @loan.owner_id == @loan.borrower_id
+            flash.alert = "You cannot loan your books to yourself."
+            render book_path(@book)
         end
     end
 end
