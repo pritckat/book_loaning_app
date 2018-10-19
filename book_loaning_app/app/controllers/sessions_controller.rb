@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
                 user.password = password
                 user.password_confirmation = password
                 user.save
+                session[:user_id] = user.id
                 redirect_to user_path(user)
             end
         else
