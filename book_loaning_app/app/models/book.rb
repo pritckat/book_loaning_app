@@ -29,5 +29,7 @@ class Book < ApplicationRecord
 
     end
 
-    
+    def set_author
+        self.author_attributes = (params[:book][:author])
+    end
 end

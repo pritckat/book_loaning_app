@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     def create
         #raise params
         @book = Book.new(book_params)
-        set_author
+        @book.set_author
         @book.user = current_user
         book_save?
     end
@@ -25,7 +25,7 @@ class BooksController < ApplicationController
 
     def update
         @book = Book.find(params[:id])
-        set_author
+        @book.set_author
         @book.update(book_params)
         book_save?
     end
@@ -56,10 +56,6 @@ class BooksController < ApplicationController
             flash.alert = "You are not the owner of this book."
             redirect_to book_path(@book)
         end
-    end
-
-    def set_author
-        @book.author_attributes = (params[:book][:author])
     end
 
     def build_genres
