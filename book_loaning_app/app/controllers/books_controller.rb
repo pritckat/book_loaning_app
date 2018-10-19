@@ -12,8 +12,11 @@ class BooksController < ApplicationController
         @book = Book.new(book_params)
         @book.author_attributes = (params[:book][:author])
         @book.user = current_user
-        @book.save
-        redirect_to book_path(@book)
+        if @book.save
+            redirect_to book_path(@book)
+        else
+            render new_book_path
+        end
     end
 
     def show

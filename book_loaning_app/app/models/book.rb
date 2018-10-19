@@ -1,8 +1,9 @@
 class Book < ApplicationRecord
-    belongs_to :user, optional: true
+    belongs_to :user
     belongs_to :author, optional: true
     has_many :loans
     has_many :genres
+    validates :title, presence: true
     accepts_nested_attributes_for :genres, reject_if: :all_blank
 
     
