@@ -2,6 +2,8 @@ class User < ApplicationRecord
     has_secure_password
     has_many :books
     has_many :loans, through: :books
+    has_many :user_authors
+    has_many :authors, through: :user_authors
     
     validates :username, presence: true
     validates :username, uniqueness: true
