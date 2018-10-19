@@ -2,21 +2,15 @@ class BooksController < ApplicationController
     before_action :require_login, only: [:new, :edit, :destroy]
     def new
         @book = Book.new
-        3.times do 
-            @book.genres.build 
-        end
+        build_genres
     end
 
     def create
         #raise params
         @book = Book.new(book_params)
-        @book.author_attributes = (params[:book][:author])
+        set_author
         @book.user = current_user
-        if @book.save
-            redirect_to book_path(@book)
-        else
-            render new_book_path
-        end
+        book_save?
     end
 
     def show
@@ -33,7 +27,7 @@ class BooksController < ApplicationController
         @book = Book.find(params[:id])
         set_author
         @book.update(book_params)
-        redirect_to book_path(@book)
+        book_save?
     end
 
     def destroy
@@ -76,8 +70,28 @@ class BooksController < ApplicationController
     end
 
     def build_genres
-        3.times do 
+        genres = params[:book][:genres_attributes]
+        count = 0
+        genres.each do |g, h|
+            h.each do |h, k|
+                if k!= ""
+                    count = count + 1
+                end
+            end
+        end
+        num = 3 - count
+        num.times do 
             @book.genres.build 
+        end
+    end
+
+    def book_save?
+        if @book.save
+            redirect_to book_path(@book)
+        else
+            build_genres
+            #raise params
+            render new_book_path
         end
     end
     end
