@@ -70,12 +70,14 @@ class BooksController < ApplicationController
     end
 
     def build_genres
-        genres = params[:book][:genres_attributes]
         count = 0
-        genres.each do |g, h|
-            h.each do |h, k|
-                if k!= ""
-                    count = count + 1
+        if params[:book] != nil
+            genres = params[:book][:genres_attributes]
+            genres.each do |g, h|
+                h.each do |h, k|
+                    if k!= ""
+                        count = count + 1
+                    end
                 end
             end
         end

@@ -7,8 +7,8 @@
         <option value="<%= author.name%>">
     <% end %>
     </datalist><br>
-    Genre<%=f.fields_for :genres do |g|%>
-    <%=g.text_field :name %><br>
+    <%=f.fields_for :genres do |g|%>
+    Genre<%=g.text_field :name %><br>
     <%end%>
     <%=f.label :description%>
     <%=f.text_area :description%><br>
