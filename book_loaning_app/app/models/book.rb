@@ -2,6 +2,8 @@ class Book < ApplicationRecord
     belongs_to :user, optional: true
     belongs_to :author, optional: true
     has_many :loans
+    has_many :genres
+    accepts_nested_attributes_for :genres, reject_if: :all_blank
 
     
     def author_attributes=(author)

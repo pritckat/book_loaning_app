@@ -2,6 +2,9 @@ class BooksController < ApplicationController
     before_action :require_login, only: [:new, :edit, :destroy]
     def new
         @book = Book.new
+        3.times do 
+            @book.genres.build 
+        end
     end
 
     def create
@@ -52,7 +55,8 @@ class BooksController < ApplicationController
     private
 
     def book_params
-        params.require(:book).permit(:title, :description)
+        params.require(:book).permit(:title, :description,
+            genre_attributes: [:id, :name])
     end
     
     def redirect_if_not_book_owner
