@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             redirect_to user_path(@user)
         else
             flash.alert = "Incorrect Credentials"
-            render login_path
+            redirect_to login_path
         end
     end
 

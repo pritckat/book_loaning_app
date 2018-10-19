@@ -1,4 +1,5 @@
 class LoansController < ApplicationController
+    before_action :require_login
 
     def new
         redirect_if_book_already_loaned
