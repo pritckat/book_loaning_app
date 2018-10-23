@@ -6,4 +6,4 @@
 <%end%>
 <%= link_to "All Books", user_books_path(@user)%><br>
 
-<%= link_to "Add a Book", new_book_path%>
+<%= link_to "Add a Book", new_book_path unless @user != current_user%>
