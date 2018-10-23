@@ -1,4 +1,10 @@
-<%@authors.each do |author|%>
-    <%=link_to author.name, author_path(author)%>
-    <%="-- #{author.books.count} books in libraries"%>
-<%end%>
+<h2>Authors</h2>
+
+<%= form_tag authors_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
+
+<%=@authors%>
