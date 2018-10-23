@@ -1,8 +1,9 @@
 <h2><%=user_header%></h2><br>
+
 <h3>Books</h3>
-<ul>
-    <%@user.books.each do |book|%>
-        <li><%=link_to book.title, book_path(book)%></li>
-    <%end%>
-</ul>
+<%Book.last_five(@user).each do |book|%>
+    <li><%=link_to book.title, book_path(book)%></li>
+<%end%>
+<%= link_to "All Books", user_books_path(@user)%><br>
+
 <%= link_to "Add a Book", new_book_path%>

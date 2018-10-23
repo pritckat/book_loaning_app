@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     get 'return', on: :member
   end
 
-  # resources :authors do
-  #   get 'favorite', on :member
-  # end
+  resources :users do
+    resources :books, only: [:index]
+  end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
