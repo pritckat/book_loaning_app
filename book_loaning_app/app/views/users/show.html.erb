@@ -10,8 +10,10 @@
 
 <h3>Authors</h3>
 <%@user.authors.uniq.each do |author|%>
-
     <li><%=author.name%></li>
 <%end%>
 
 <h3>Books I'm Borrowing</h3>
+<%Loan.loaned_to_me(@user).each do |loan|%>
+    <%=loan.book.title%>
+<%end%>

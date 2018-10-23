@@ -16,4 +16,8 @@ class Loan < ApplicationRecord
         user = User.find(self.borrower_id)
         user.username
     end
+
+    def self.loaned_to_me(user)
+        where("borrower_id = ?", user).where(returned: false)
+    end
 end

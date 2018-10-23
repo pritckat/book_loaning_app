@@ -26,7 +26,6 @@ class Book < ApplicationRecord
             borrower = User.find(borrower_id)
             borrower.username
         end
-
     end
 
     def set_author
