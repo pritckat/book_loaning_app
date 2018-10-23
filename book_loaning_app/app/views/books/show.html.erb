@@ -1,5 +1,5 @@
 <h2><%= @book.title %></h2><br>
-By: <%= @book.author.name unless @book.author == nil%><br>
+By: <%= link_to @book.author.name, author_path(@book.author) unless @book.author == nil%><br>
 Description: <%= @book.description%><br>
 Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
 
