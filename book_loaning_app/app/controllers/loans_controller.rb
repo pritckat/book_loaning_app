@@ -10,9 +10,6 @@ class LoansController < ApplicationController
         @loan = Loan.new(loan_params)
         @book = Book.find(@loan.book_id)
         redirect_if_loaning_to_self
-        @loan.returned = false
-        @loan.save
-        redirect_to book_path(@book)
     end
 
     def index
@@ -43,7 +40,11 @@ class LoansController < ApplicationController
     def redirect_if_loaning_to_self
         if @loan.owner_id == @loan.borrower_id
             flash.alert = "You cannot loan your books to yourself."
-            render book_path(@book)
+            redirect_to new_book_loan_path(@book)
+        else
+            @loan.returned = false
+            @loan.save
+            redirect_to book_path(@book)
         end
     end
 end
