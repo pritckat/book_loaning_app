@@ -5,11 +5,7 @@ class Author < ApplicationRecord
     validates :name, presence: true
 
     def self.search(query)
-        if query == ''
-            self.all.pluck(:name)
-        else
-            self.where("name LIKE :query", {query: "%#{query}%"}).pluck(:name)
-        end
+        self.where("name LIKE :query", {query: "%#{query}%"})
     end
 
 end

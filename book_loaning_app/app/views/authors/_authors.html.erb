@@ -1,4 +1,4 @@
-<%@authors.each do |author|%>
+<%authors.each do |author|%>
     <%=link_to author.name, author_path(author)%>
     <%="-- #{author.books.count} books in libraries"%><br>
 <%end%>
