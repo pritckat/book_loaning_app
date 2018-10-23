@@ -19,5 +19,9 @@ Rails.application.routes.draw do
   resources :books do
     get 'return', on: :member
   end
+
+  # resources :authors do
+  #   get 'favorite', on :member
+  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
