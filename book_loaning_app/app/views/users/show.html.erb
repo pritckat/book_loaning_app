@@ -1,19 +1,20 @@
 <h2><%=user_header%></h2><br>
 
-<h3>Books</h3>
+<h3>Recently Added Books</h3>
 <%Book.last_five(@user).each do |book|%>
-    <li><%=link_to book.title, book_path(book)%></li>
-<%end%>
+    <li><%=link_to book.title, book_path(book)%>
+    <%="(Loaned)" if book.loaned?%></li>
+<%end%><br>
 <%= link_to "All Books", user_books_path(@user)%><br>
 
 <%= link_to "Add a Book", new_book_path unless @user != current_user%>
 
 <h3>Authors</h3>
 <%@user.authors.uniq.each do |author|%>
-    <li><%=author.name%></li>
+    <li><%=link_to author.name, author_path(author)%></li>
 <%end%>
 
 <h3>Books I'm Borrowing</h3>
 <%Loan.loaned_to_me(@user).each do |loan|%>
-    <%=loan.book.title%>
+    <%=link_to loan.book.title, book_path(loan.book) if loan.book%>
 <%end%>
