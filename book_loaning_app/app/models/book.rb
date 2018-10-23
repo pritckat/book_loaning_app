@@ -32,4 +32,8 @@ class Book < ApplicationRecord
     def set_author
         self.author_attributes = (params[:book][:author])
     end
+
+    def last_five
+        self.order(created_at: :desc).take(5)
+    end
 end
