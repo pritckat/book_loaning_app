@@ -1,6 +1,7 @@
 <h2><%= @book.title %></h2><br>
 By: <%= link_to @book.author.name, author_path(@book.author) unless @book.author == nil%><br>
 Description: <%= @book.description%><br>
+Genre Tags: <%=@book.genres.pluck(:name).join(", ")%><br>
 Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
 
 <%=link_to "Loan History", book_loans_path(@book)%>

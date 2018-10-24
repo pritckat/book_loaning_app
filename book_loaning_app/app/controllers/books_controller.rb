@@ -4,8 +4,6 @@ class BooksController < ApplicationController
 
     def index
         if params[:user_id]
-            # @user = User.find(params[:user_id])
-            # @books = @user.books
             @books = Book.where(id: params[:user_id]).search(params[:query])
         else
             @books = Book.search(params[:query])
@@ -18,7 +16,6 @@ class BooksController < ApplicationController
     end
 
     def create
-        #raise params
         @book = Book.new(book_params)
         @book.set_author
         @book.user = current_user
@@ -108,4 +105,10 @@ class BooksController < ApplicationController
             redirect_to book_path(@book)
         end
     end
+
+    
+    def set_author
+        self.author_attributes = (params[:book][:author])
+    end
+
     end

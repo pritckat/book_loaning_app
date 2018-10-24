@@ -28,10 +28,6 @@ class Book < ApplicationRecord
         end
     end
 
-    def set_author
-        self.author_attributes = (params[:book][:author])
-    end
-
     def self.last_five(user)
         where("user_id = ?", user.id).order(created_at: :desc).take(5)
     end
