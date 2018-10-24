@@ -4,8 +4,9 @@ class BooksController < ApplicationController
 
     def index
         if params[:user_id]
-            @user = User.find(params[:user_id])
-            @books = @user.books
+            # @user = User.find(params[:user_id])
+            # @books = @user.books
+            @books = Book.where(id: params[:user_id]).search(params[:query])
         else
             @books = Book.search(params[:query])
         end
