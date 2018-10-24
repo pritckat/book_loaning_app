@@ -36,4 +36,7 @@ class Book < ApplicationRecord
         where("user_id = ?", user.id).order(created_at: :desc).take(5)
     end
 
+    def self.search(query)
+        self.where("title LIKE :query", {query: "%#{query}%"})
+    end
 end

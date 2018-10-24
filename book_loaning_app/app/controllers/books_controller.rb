@@ -7,7 +7,7 @@ class BooksController < ApplicationController
             @user = User.find(params[:user_id])
             @books = @user.books
         else
-            @books = Book.all
+            @books = Book.search(params[:query])
         end
     end
     

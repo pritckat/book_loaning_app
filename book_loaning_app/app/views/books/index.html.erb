@@ -1,3 +1,9 @@
+<%= form_tag books_path, method: :get do %>
+  <p>
+    <%= text_field_tag :query, params[:query], placeholder: "Search by title" %>
+    <%= submit_tag "Search", name: nil %>
+  </p>
+<% end %>
 <%@books.each do |book| %>
     <%= link_to book.title, book_path(book) %><br>
 <%end%>
