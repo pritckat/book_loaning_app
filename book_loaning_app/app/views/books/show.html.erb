@@ -4,14 +4,8 @@ Description: <%= @book.description%><br>
 Genre Tags: <%=@book.genres.pluck(:name).join(", ")%><br>
 Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
 
-<%=link_to "Loan History", book_loans_path(@book)%>
-<%if @book.loaned?%>
-    Loaned To: <%=link_to @book.currently_loaned_to, user_path(User.find_by(username: @book.currently_loaned_to))%>
-<%end%><br>
-
-<%if @book.loaned? && @book.currently_loaned_to == current_user.username%>
-    <%= link_to "Return Book", return_book_path(@book)%>
-<%end%>
+<%=link_to "Loan History", book_loans_path(@book)%><br>
+<%= book_links %><br>
 
 <%if @book.user == current_user%>
     <%if !@book.loaned?%>
