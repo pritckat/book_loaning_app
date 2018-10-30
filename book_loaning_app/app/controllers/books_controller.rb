@@ -17,7 +17,7 @@ class BooksController < ApplicationController
 
     def create
         @book = Book.new(book_params)
-        @book.set_author
+        @book.author_attributes = (params[:book][:author])
         @book.user = current_user
         book_save?
     end
@@ -34,7 +34,7 @@ class BooksController < ApplicationController
 
     def update
         @book = Book.find(params[:id])
-        @book.set_author
+        @book.author_attributes = (params[:book][:author])
         @book.update(book_params)
         book_save?
     end
