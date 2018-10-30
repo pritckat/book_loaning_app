@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :genres
-  resources :authors
-  resources :loans
+  resources :authors, only: [:index, :show]
+  resources :loans, only: [:new, :create, :index]
   resources :books
   root 'welcome#show'
   resources :users
