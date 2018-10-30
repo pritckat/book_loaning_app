@@ -3,7 +3,6 @@ class AuthorsController < ApplicationController
 
     def index
         @authors = Author.search(params[:query])
-        #raise params
         render 'index'
     end
 
