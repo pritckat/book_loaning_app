@@ -1,16 +1,20 @@
 <%= form_for book do |f| %>
     <%=f.label :title %>
     <%=f.text_field :title %><br>
+
     Author<%= f.text_field :author, list: "authors_autocomplete", value: book.author? %>
     <datalist id="authors_autocomplete">
     <% Author.all.each do |author| %>
         <option value="<%= author.name%>">
     <% end %>
     </datalist><br>
+
     <%=f.fields_for :genres do |g|%>
     Genre<%=g.text_field :name %><br>
     <%end%>
+
     <%=f.label :description%>
     <%=f.text_area :description%><br>
-    <%=f.submit "Add Book"%>
+
+    <%=f.submit "Submit"%>
 <%end%>
