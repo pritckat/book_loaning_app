@@ -35,4 +35,8 @@ class Book < ApplicationRecord
     def self.search(query)
         self.where("title LIKE :query", {query: "%#{query}%"})
     end
+
+    def author?
+        self.author == nil ? "" : self.author.name
+    end
 end

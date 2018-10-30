@@ -1,7 +1,7 @@
 <%= form_for book do |f| %>
     <%=f.label :title %>
     <%=f.text_field :title %><br>
-    Author<%= f.text_field :author, list: "authors_autocomplete", :value => "" %>
+    Author<%= f.text_field :author, list: "authors_autocomplete", value: book.author? %>
     <datalist id="authors_autocomplete">
     <% Author.all.each do |author| %>
         <option value="<%= author.name%>">
