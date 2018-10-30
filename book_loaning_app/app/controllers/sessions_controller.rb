@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
                 session[:user_id] = user.id
                 redirect_to user_path(user)
             else
+                #create new user with github
                 user = User.new()
                 user.username = oauth_name
                 password = SecureRandom.hex
