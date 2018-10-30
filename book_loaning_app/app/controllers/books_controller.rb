@@ -79,7 +79,8 @@ class BooksController < ApplicationController
                 end
             end
         end
-        num = 3 - count
+        num_genres = @book.genres.count
+        num = 3 - count - num_genres
         num.times do 
             @book.genres.build 
         end
@@ -90,7 +91,6 @@ class BooksController < ApplicationController
             redirect_to book_path(@book)
         else
             build_genres
-            #raise params
             render new_book_path
         end
     end
@@ -104,11 +104,6 @@ class BooksController < ApplicationController
             @loan.save
             redirect_to book_path(@book)
         end
-    end
-
-    
-    def set_author
-        self.author_attributes = (params[:book][:author])
     end
 
     end
