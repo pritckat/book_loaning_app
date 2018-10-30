@@ -34,6 +34,7 @@ class BooksController < ApplicationController
 
     def update
         @book = Book.find(params[:id])
+        redirect_if_not_book_owner
         @book.author_attributes = (params[:book][:author])
         @book.update(book_params)
         book_save?
