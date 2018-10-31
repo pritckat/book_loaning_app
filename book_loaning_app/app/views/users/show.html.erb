@@ -5,9 +5,13 @@
     <li><%=link_to book.title, book_path(book)%>
     <%="(Loaned)" if book.loaned?%></li>
 <%end%><br>
-<%= link_to "All Books", user_books_path(@user)%><br>
+
+<a class="load_books">
+    <%= link_to "All Books", user_books_path(@user)%>
+</a><br>
 
 <%= link_to "Add a Book", new_book_path unless @user != current_user%>
+
 
 <h3>Authors</h3>
 <%@user.authors.uniq.each do |author|%>
