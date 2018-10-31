@@ -6,9 +6,9 @@
     <%="(Loaned)" if book.loaned?%></li>
 <%end%><br>
 
-<a class="load_books">
-    <%= link_to "All Books", user_books_path(@user)%>
-</a><br>
+<p>
+    <%= link_to "All Books", user_books_path(@user), class: "load_books"%>
+</p><br>
 
 <%= link_to "Add a Book", new_book_path unless @user != current_user%>
 
