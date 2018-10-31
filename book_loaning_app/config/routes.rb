@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   end
 
   resources :users do
+    get 'lending', on: :member
+  end
+  
+  resources :users do
     resources :books, only: [:index]
   end
   

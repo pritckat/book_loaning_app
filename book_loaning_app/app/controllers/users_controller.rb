@@ -22,6 +22,11 @@ class UsersController < ApplicationController
         @users = User.all 
     end
 
+    def lending
+        @user = User.find(params[:id])
+        @loans = Loan.books_i_am_loaning(@user)
+    end
+    
     private
 
     def user_params
