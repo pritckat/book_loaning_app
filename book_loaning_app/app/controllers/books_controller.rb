@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     def index
         if params[:user_id]
             @books = Book.where(id: params[:user_id]).search(params[:query])
+            render layout: false
         else
             @books = Book.search(params[:query])
         end
