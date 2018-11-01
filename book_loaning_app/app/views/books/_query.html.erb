@@ -1,15 +1,15 @@
 <%if user%>
-<%= form_tag user_books_path(user), method: :get do%>
-  <p>
-    <%= text_field_tag :query, params[:query], placeholder: "Search by title" %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-  <%end%>
+    <%= form_tag user_books_path(user), method: :get do%>
+    <p>
+        <%= text_field_tag :query, params[:query], placeholder: "Search by title" %>
+        <%= submit_tag "Search", name: nil %>
+    </p>
+    <%end%>
 <%else%>
-<%= form_tag books_path, method: :get do %>
-  <p>
-    <%= text_field_tag :query, params[:query], placeholder: "Search by title" %>
-    <%= submit_tag "Search", name: nil %>
-  </p>
-<% end %>
+    <%= form_tag books_path, method: :get do %>
+    <p>
+        <%= text_field_tag :query, params[:query], placeholder: "Search by title" %>
+        <%= submit_tag "Search", name: nil %>
+    </p>
+    <% end %>
 <%end%>
