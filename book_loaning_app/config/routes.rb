@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :comments
   resources :authors, only: [:index, :show]
   resources :loans, only: [:new, :create, :index]
   resources :books
