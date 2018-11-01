@@ -9,7 +9,7 @@
 <p>
     <%= link_to "All Books", user_books_path(@user), class: "load_books"%>
 </p><br>
-
+<div class="all_books"></div><br>
 <%= link_to "Add a Book", new_book_path unless @user != current_user%>
 
 
