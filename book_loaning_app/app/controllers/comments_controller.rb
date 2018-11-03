@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
     def new
         @comment = Comment.new
+        @book = Book.find(params[:book_id])
     end
 
     def create

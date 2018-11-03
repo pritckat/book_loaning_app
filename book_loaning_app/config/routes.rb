@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :comments
   resources :authors, only: [:index, :show]
   resources :loans, only: [:new, :create, :index]
   resources :books
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
   
   resources :books do 
     resources :loans, only: [:new, :index]
+    resources :comments
   end
 
   get '/login' => "sessions#new"
