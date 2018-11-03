@@ -1,0 +1,6 @@
+<%=form_for @comment do |f|%>
+<%=f.label :title%>
+<%=f.text_field :title%><br>
+<%=f.text_area :body, placeholder: "Share your thoughts..."%><br>
+<%=f.submit "Submit"%>
+<%end%>
