@@ -12,3 +12,10 @@ Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
     <%= link_to "Edit Book Information", edit_book_path(@book)%>
     <%= link_to "Delete Book", @book, method: :delete %>
 <%end%>
+
+<% if @book.comments%>
+    <h3>Comments</h3>
+    <%@book.comments.each do |c|%><br>
+    <%= c.title + "by:" + c.user%>
+    <%end%>
+<%end%>
