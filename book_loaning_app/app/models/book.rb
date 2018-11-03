@@ -3,6 +3,7 @@ class Book < ApplicationRecord
     belongs_to :author, optional: true
     has_many :loans
     has_many :genres
+    has_many :comments
 
     validates :title, presence: true
     
