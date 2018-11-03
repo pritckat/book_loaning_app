@@ -19,3 +19,4 @@ class CommentsController < ApplicationController
         params.require(:comment).permit(:book_id, :user_id, :title, :body)
     end
 end
+end
