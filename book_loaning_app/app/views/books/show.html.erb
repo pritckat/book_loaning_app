@@ -19,4 +19,5 @@ Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
     <strong><%= c.title + " by: " + c.user.username%></strong>
     <%=link_to "View Comment", book_comment_path(@book, c)%>
     <%end%>
-<%end%>
+<%end%><br>
+<%=link_to "Comment on this Book", new_book_comment_path(@book)%>
