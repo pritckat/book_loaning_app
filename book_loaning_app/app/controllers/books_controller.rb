@@ -6,7 +6,10 @@ class BooksController < ApplicationController
         if params[:user_id]
             @user = User.find(params[:user_id])
             @books = Book.search(params[:query]).where(user_id: @user.id)
-            render json: @books
+            respond_to do |format|
+                format.html
+                format.json {render json: @books}
+            end
         else
             @books = Book.search(params[:query])
         end
