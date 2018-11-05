@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
 
     def index
         @comments = Comment.where(book_id: params[:book_id])
+        render json: @comments
     end
 
 
