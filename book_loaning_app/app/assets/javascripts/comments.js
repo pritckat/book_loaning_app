@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function(){
                 newReply = new Reply(r.id, r.body, r.user.username, r.comment.id)
                 console.log(newReply)
                 $(".initial_replies").append("<li>" + newReply.printReply() + "</li>")
+                $("#reply_body").val("")
             }
         })
         e.preventDefault()
