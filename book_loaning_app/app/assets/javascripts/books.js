@@ -20,6 +20,10 @@ const getBookId = () => {
 
 const listComments = (comments) => {
     comments.forEach(comment => {
-        $("div.all_comments ol").append("<li>" + comment.title + "</li>")
+        $("div.all_comments ol")
+        .append("<li><strong>" + comment.title +" </strong>"
+        + " by " + comment.user.username + " " +
+        `<a href="/books/${comment.book.id}/comments/${comment.id}">`
+        + "View Comment</li>")
     })
 }
