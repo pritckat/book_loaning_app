@@ -21,4 +21,5 @@ Owner: <%=link_to @book.user.username, user_path(@book.user)%><br>
     <%end%>
 <%end%><br>
 <%= render partial: 'comments/form', locals: {comment: Comment.new(book_id: @book.id, user_id: current_user.id), book: @book}%>
-<%= link_to "Log Comments to Console", book_path(@book), class: "log_comments"%>
+<div class="all_comments"><ol></ol>
+</div>

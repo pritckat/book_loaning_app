@@ -10,10 +10,16 @@ $(document).on('turbolinks:load', function(){
 const getComments = (id) => {
     return fetch(`http://localhost:3000/books/${id}/comments`)
     .then(res => res.json())
-    .then(comments => console.log(comments))
+    .then(comments => listComments(comments))
 }
 
 const getBookId = () => {
     let bookId = window.location.href.split("/")[4]
     return bookId
+}
+
+const listComments = (comments) => {
+    comments.forEach(comment => {
+        $("div.all_comments ol").append("<li>" + comment.title + "</li>")
+    })
 }
