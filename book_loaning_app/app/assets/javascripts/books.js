@@ -4,13 +4,16 @@ $(document).on('turbolinks:load', function(){
         e.preventDefault()
     })
 
-    const getComments = (id) => {
-        return fetch(`http://localhost:3000/books/${id}/comments`)
-        .then(res => res.json())
-        .then(comments => console.log(comments))
-    }
-
-    $("a.log_comments").on("click", function() {
-        getComments(17)
-    })
+    getComments(getBookId())
 })
+
+const getComments = (id) => {
+    return fetch(`http://localhost:3000/books/${id}/comments`)
+    .then(res => res.json())
+    .then(comments => console.log(comments))
+}
+
+const getBookId = () => {
+    let bookId = window.location.href.split("/")[4]
+    return bookId
+}
