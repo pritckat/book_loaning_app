@@ -9,7 +9,7 @@ class RepliesController < ApplicationController
         @reply = Reply.create(reply_params)
         @comment = @reply.comment
         @book = @comment.book
-        redirect_to book_comment_path(@book, @comment)
+        render json: @reply, status: 201
     end
 
     private

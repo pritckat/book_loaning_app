@@ -7,6 +7,22 @@ $(document).on('turbolinks:load', function(){
     $("a.js-prev").on("click", function(e) {
         prevComment(e)
     })
+
+    $("#new_reply").on("submit", function(e) {
+
+        $.ajax({
+            type: "POST",
+            url: this.action,
+            data: $(this).serialize(),
+            success: function(r){
+                newReply = new Reply(r.id, r.body, r.user.username, r.comment.id)
+                console.log(newReply)
+                $(".initial_replies").append("<li>" + newReply.printReply() + "</li>")
+            }
+        })
+        e.preventDefault()
+    })
+
 })
 
 const bookId = parseInt($(".js-next").attr("data-bookid"))
@@ -46,3 +62,16 @@ const showReplies = (data => {
         $ul.append("<li>" + reply["body"] +"</li>")
     )
 })
+
+let Reply = class {
+    constructor(id, body, userName, commentId) {
+        this.id = id;
+        this.body = body;
+        this.userName = userName;
+        this.commentId = commentId;
+    }
+
+    printReply() {
+        return this.userName + " says: " + this.body
+    }
+}
