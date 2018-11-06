@@ -16,7 +16,8 @@ const showComment = (data) => {
     $(".js-next").attr("data-commentid", data["id"])
     $(".comment_user").text(data["user"]["username"])
     $(".comment_book").text(data["book"]["title"])
-    $(".comment_body").text(data["body"])
+    $(".comment_body").text(data["body"])        
+    showReplies(data)
 }
 
 const prevComment = function(e) {
@@ -36,3 +37,12 @@ const nextComment = function(e) {
         showComment(data)
     })
 }
+
+const showReplies = (data => {
+    $(".initial_replies").html("")
+    let $ul = $(".comment_replies ul")
+    $ul.html("")
+    data["replies"].forEach(reply =>
+        $ul.append("<li>" + reply["body"] +"</li>")
+    )
+})
