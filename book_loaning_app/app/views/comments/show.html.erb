@@ -1,4 +1,5 @@
-<p>add book title and comment author</p>
+<p>Review of: <samp class="comment_book"><%=@comment.book.title%></samp></p>
+<p>By: <samp class="comment_user"><%=@comment.user.username%></samp></p>
 <h2 class="comment_title"><%=@comment.title%></h2>
 <p class="comment_body"><%=@comment.body%></p>
 <a href="#" class="js-next" data-bookid="<%=@comment.book.id%>" data-commentid="<%=@comment.id%>">Next...</a>
