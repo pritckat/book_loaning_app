@@ -16,3 +16,4 @@
 //= require jquery
 //= require users.js
 //= require books.js
+//= require comments.js
