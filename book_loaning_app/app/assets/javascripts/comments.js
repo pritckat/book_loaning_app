@@ -8,7 +8,9 @@ $(document).on('turbolinks:load', function(){
             console.log(data)
             $(".comment_title").text(data["title"]);
             $(".js-next").attr("data-commentid", data["id"])
-            console.log(".js-next")
+            $(".comment_user").text(data["user"]["username"])
+            $(".comment_book").text(data["book"]["title"])
+            $(".comment_body").text(data["body"])
         })
     })
 })
