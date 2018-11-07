@@ -1,13 +1,11 @@
 $(document).on('turbolinks:load', function(){
 
-    const bookId = parseInt($(".js-next").attr("data-bookid"))
-
     $("a.js-next").on("click", function(e){
-        nextComment(e);
+        switchComment(e, "next");
     });
 
     $("a.js-prev").on("click", function(e) {
-        prevComment(e);
+        switchComment(e, "prev");
     });
 
     $("#new_reply").on("submit", function(e) {
@@ -26,6 +24,42 @@ $(document).on('turbolinks:load', function(){
         e.preventDefault();
     })
 
+    const getBookId = () => {
+        let bookId = window.location.href.split("/")[4]
+        return bookId
+    }
+
+    const getComments = function(id) {
+        return fetch(`http://localhost:3000/books/${id}/comments`)
+        .then(res => res.json())
+        .then(comments => collectCommentIds(comments))
+    }
+
+    const collectCommentIds = function(comments) {
+        let idsArray = []
+        comments.forEach(comment => {
+            idsArray.push(comment.id)
+        })
+        console.log(idsArray)
+        return idsArray 
+    }
+    getComments(getBookId())
+
+
+    const switchComment = function(e, dir) {
+        e.preventDefault();
+        let nextId
+        if (dir === "next") {
+            nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
+        }
+        else if (dir === "prev") {
+            nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
+        }
+        let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
+        $.get(nextUrl, function(data) {
+        showComment(data);
+        })
+    }
     const showComment = (data) => {
         $(".comment_title").text(data["title"]);
         $(".js-next").attr("data-commentid", data["id"]);
@@ -34,24 +68,6 @@ $(document).on('turbolinks:load', function(){
         $(".comment_body").text(data["body"]);
         $("#reply_comment_id").val(data["id"]);       
         showReplies(data);
-    }
-
-    const prevComment = function(e) {
-        e.preventDefault();
-        let nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
-        let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
-        $.get(nextUrl, function(data) {
-        showComment(data);
-        })
-    }
-
-    const nextComment = function(e) {
-        e.preventDefault();
-        let nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
-        let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
-        $.get(nextUrl, function(data) {
-            showComment(data);
-        })
     }
 
     const showReplies = (data => {
