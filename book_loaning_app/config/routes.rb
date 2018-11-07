@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :books
   root 'welcome#show'
   resources :users
-  
+
   resources :books do 
     resources :loans, only: [:new, :index]
-    resources :comments
+    resources :comments, only: [:new, :index, :show]
   end
 
   resources :comments do
