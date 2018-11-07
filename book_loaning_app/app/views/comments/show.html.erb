@@ -7,11 +7,11 @@
 <a href="#" class="js-next" data-bookid="<%=@comment.book.id%>" data-commentid="<%=@comment.id%>">Next</a>
 
 <h3>Replies</h3>
-<div class="initial_replies">
+<div class="initial_replies"><ul>
     <%@comment.replies.each do |reply|%>
         <li><%=reply.user.username%> says: <%=reply.body%></li>
     <%end%>
-</div>
+</ul></div>
 
 <div class="comment_replies">
     <ul></ul>
