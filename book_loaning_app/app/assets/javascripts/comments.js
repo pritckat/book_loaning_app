@@ -26,13 +26,6 @@ $(document).on('turbolinks:load', function(){
         e.preventDefault();
     })
 
-
-    console.log(bookId)
-
-
-
-
-
     const showComment = (data) => {
         $(".comment_title").text(data["title"]);
         $(".js-next").attr("data-commentid", data["id"]);
@@ -46,21 +39,18 @@ $(document).on('turbolinks:load', function(){
     const prevComment = function(e) {
         e.preventDefault();
         let nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
-        $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
+        let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
+        $.get(nextUrl, function(data) {
         showComment(data);
         })
     }
 
     const nextComment = function(e) {
         e.preventDefault();
-        //const bookId = parseInt($(".js-next").attr("data-bookid"))
-        console.log(bookId)
         let nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
-        //console.log(nextId)
-        $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
-            console.log(this)
+        let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
+        $.get(nextUrl, function(data) {
             showComment(data);
-            console.log(data)
         })
     }
 
