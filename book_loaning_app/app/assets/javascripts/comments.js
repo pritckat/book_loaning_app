@@ -16,9 +16,11 @@ $(document).on('turbolinks:load', function(){
             url: this.action,
             data: $(this).serialize(),
             success: function(r){
+                if (r.body != "") {
                 newReply = new Reply(r.id, r.body, r.user.username, r.comment.id);
                 $(".initial_replies ul").append("<li>" + newReply.printReply() + "</li>");
                 $("#reply_body").val("");
+                }
             }
         })
         e.preventDefault();
