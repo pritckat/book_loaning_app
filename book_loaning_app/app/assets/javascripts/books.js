@@ -3,14 +3,14 @@ $(document).on('turbolinks:load', function(){
     //     alert("Submitted")
     //     e.preventDefault()
     // })
-
     getComments(getBookId())
 })
+let idarray = []
 
 const getComments = (id) => {
     return fetch(`http://localhost:3000/books/${id}/comments`)
     .then(res => res.json())
-    .then(comments => listComments(comments))
+    .then(comments => {return listComments(comments)})
 }
 
 const getBookId = () => {
@@ -27,5 +27,7 @@ const listComments = (comments) => {
         + " by " + comment.user.username + " " +
         `<a href="/books/${comment.book.id}/comments/${comment.id}">`
         + "View Comment</li>")
+        idarray.push(comment.id)
     })
+    return idarray
 }
