@@ -17,9 +17,9 @@ $(document).on('turbolinks:load', function(){
             data: $(this).serialize(),
             success: function(r){
                 if (r.body != "") {
-                newReply = new Reply(r.id, r.body, r.user.username, r.comment.id);
-                $(".initial_replies ul").append("<li>" + newReply.printReply() + "</li>");
-                $("#reply_body").val("");
+                    newReply = new Reply(r.id, r.body, r.user.username, r.comment.id);
+                    $(".initial_replies ul").append("<li>" + newReply.printReply() + "</li>");
+                    $("#reply_body").val("");
                 }
             }
         })
@@ -33,60 +33,55 @@ $(document).on('turbolinks:load', function(){
 
 
 
-const showComment = (data) => {
-    $(".comment_title").text(data["title"]);
-    $(".js-next").attr("data-commentid", data["id"]);
-    $(".comment_user").text(data["user"]["username"]);
-    $(".comment_book").text(data["book"]["title"]);
-    $(".comment_body").text(data["body"]);
-    $("#reply_comment_id").val(data["id"]);       
-    showReplies(data);
-}
-
-const prevComment = function(e) {
-    e.preventDefault();
-    //const bookId = parseInt($(".js-next").attr("data-bookid"))
-    let nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
-    //console.log(nextId)
-    console.log(bookId)
-    $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
-        console.log(this)
-        showComment(data);
-        console.log(data)
-    })
-}
-
-const nextComment = function(e) {
-    e.preventDefault();
-    //const bookId = parseInt($(".js-next").attr("data-bookid"))
-    console.log(bookId)
-    let nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
-    //console.log(nextId)
-    $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
-        console.log(this)
-        showComment(data);
-        console.log(data)
-    })
-}
-
-const showReplies = (data => {
-    let $ul = $(".initial_replies ul");
-    $ul.html("");
-    data["replies"].forEach(reply =>
-        $ul.append("<li>" + reply.user.username + " says: " + reply["body"] +"</li>")
-    );
-})
-
-let Reply = class {
-    constructor(id, body, userName, commentId) {
-        this.id = id;
-        this.body = body;
-        this.userName = userName;
-        this.commentId = commentId;
+    const showComment = (data) => {
+        $(".comment_title").text(data["title"]);
+        $(".js-next").attr("data-commentid", data["id"]);
+        $(".comment_user").text(data["user"]["username"]);
+        $(".comment_book").text(data["book"]["title"]);
+        $(".comment_body").text(data["body"]);
+        $("#reply_comment_id").val(data["id"]);       
+        showReplies(data);
     }
 
-    printReply() {
-        return this.userName + " says: " + this.body;
+    const prevComment = function(e) {
+        e.preventDefault();
+        let nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
+        $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
+        showComment(data);
+        })
     }
-}
+
+    const nextComment = function(e) {
+        e.preventDefault();
+        //const bookId = parseInt($(".js-next").attr("data-bookid"))
+        console.log(bookId)
+        let nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
+        //console.log(nextId)
+        $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
+            console.log(this)
+            showComment(data);
+            console.log(data)
+        })
+    }
+
+    const showReplies = (data => {
+        let $ul = $(".initial_replies ul");
+        $ul.html("");
+        data["replies"].forEach(reply =>
+            $ul.append("<li>" + reply.user.username + " says: " + reply["body"] +"</li>")
+        );
+    })
+
+    let Reply = class {
+        constructor(id, body, userName, commentId) {
+            this.id = id;
+            this.body = body;
+            this.userName = userName;
+            this.commentId = commentId;
+        }
+
+        printReply() {
+            return this.userName + " says: " + this.body;
+        }
+    }
 })
