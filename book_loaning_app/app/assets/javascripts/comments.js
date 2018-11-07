@@ -58,7 +58,7 @@ const showReplies = (data => {
     let $ul = $(".initial_replies ul")
     $ul.html("")
     data["replies"].forEach(reply =>
-        $ul.append("<li>" + reply["body"] +"</li>")
+        $ul.append("<li>" + reply.user.username + " says: " + reply["body"] +"</li>")
     )
 })
 
