@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :books do 
     resources :loans, only: [:new, :index]
-    resources :comments, only: [:new, :index, :show]
+    resources :comments, only: [:new, :create, :index, :show]
   end
 
   resources :comments do
