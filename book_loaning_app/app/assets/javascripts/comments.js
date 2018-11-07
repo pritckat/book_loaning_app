@@ -56,8 +56,6 @@ const nextComment = function(e) {
 }
 
 const showReplies = (data => {
-    $(".initial_replies").html("")
-    let $ul = $(".comment_replies ul")
     let $ul = $(".initial_replies ul")
     $ul.html("")
     data["replies"].forEach(reply =>
