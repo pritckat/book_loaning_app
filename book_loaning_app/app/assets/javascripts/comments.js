@@ -9,19 +9,12 @@ $(document).on('turbolinks:load', function(){
     })
 
     $("#new_reply").on("submit", function(e) {
-        console.log(this.action)
-        let postId = parseInt($(".js-next").attr("data-commentid"))
-        let url = this.action
-        let newUrl = this.action.split("/")
-        newUrl[4] = `${postId}`
-        console.log(newUrl.join("/"))
         $.ajax({
             type: "POST",
-            url: newUrl.join("/"),
+            url: this.action,
             data: $(this).serialize(),
             success: function(r){
-                newReply = new Reply(r.id, r.body, r.user.username, postId)
-                console.log(newReply)
+                newReply = new Reply(r.id, r.body, r.user.username, r.comment.id)
                 $(".initial_replies ul").append("<li>" + newReply.printReply() + "</li>")
                 $("#reply_body").val("")
             }
@@ -38,7 +31,8 @@ const showComment = (data) => {
     $(".js-next").attr("data-commentid", data["id"])
     $(".comment_user").text(data["user"]["username"])
     $(".comment_book").text(data["book"]["title"])
-    $(".comment_body").text(data["body"])        
+    $(".comment_body").text(data["body"]) 
+    $("#reply_comment_id").val(data["id"])       
     showReplies(data)
 }
 
