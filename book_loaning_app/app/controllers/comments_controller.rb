@@ -16,10 +16,16 @@ class CommentsController < ApplicationController
     end
 
     def show
+        @book = Book.find(params[:book_id])
         @comment = Comment.find(params[:id])
-        respond_to do |format|
-            format.html
-            format.json {render json: @comment}
+        if @comment.book == @book
+            
+            respond_to do |format|
+                format.html
+                format.json {render json: @comment}
+            end
+        else
+            render status: 404
         end
     end
 
