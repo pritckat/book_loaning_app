@@ -9,15 +9,20 @@ $(document).on('turbolinks:load', function(){
     })
 
     $("#new_reply").on("submit", function(e) {
-
+        console.log(this.action)
+        let postId = parseInt($(".js-next").attr("data-commentid"))
+        let url = this.action
+        let newUrl = this.action.split("/")
+        newUrl[4] = `${postId}`
+        console.log(newUrl.join("/"))
         $.ajax({
             type: "POST",
-            url: this.action,
+            url: newUrl.join("/"),
             data: $(this).serialize(),
             success: function(r){
-                newReply = new Reply(r.id, r.body, r.user.username, r.comment.id)
+                newReply = new Reply(r.id, r.body, r.user.username, postId)
                 console.log(newReply)
-                $(".initial_replies").append("<li>" + newReply.printReply() + "</li>")
+                $(".initial_replies ul").append("<li>" + newReply.printReply() + "</li>")
                 $("#reply_body").val("")
             }
         })
