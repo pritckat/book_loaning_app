@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function(){
 
+    const bookId = parseInt($(".js-next").attr("data-bookid"))
+
     $("a.js-next").on("click", function(e){
         nextComment(e);
     });
@@ -21,11 +23,11 @@ $(document).on('turbolinks:load', function(){
         })
         e.preventDefault();
     })
-    const bookId = parseInt($(".js-next").attr("data-bookid"))
+
 
     console.log(bookId)
 
-})
+
 
 
 
@@ -46,6 +48,7 @@ const prevComment = function(e) {
     //console.log(nextId)
     console.log(bookId)
     $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
+        console.log(this)
         showComment(data);
         console.log(data)
     })
@@ -58,6 +61,7 @@ const nextComment = function(e) {
     let nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
     //console.log(nextId)
     $.get("/books/" + bookId + "/comments/" + nextId +".json", function(data) {
+        console.log(this)
         showComment(data);
         console.log(data)
     })
@@ -83,3 +87,4 @@ let Reply = class {
         return this.userName + " says: " + this.body;
     }
 }
+})
