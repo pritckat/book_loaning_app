@@ -19,5 +19,11 @@ module ApplicationHelper
             link_to "Home", user_path(current_user)
         end
     end
+
+    def add_search_books_button
+        if logged_in?
+            link_to "Search Books", books_path
+        end
+    end
     
 end
