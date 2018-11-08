@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to book_path(@book)
         else
+            @errors = @comment.errors
             render new_comment_path(@comment)
         end
     end

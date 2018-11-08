@@ -1,4 +1,12 @@
 <h4>Add A Review</h4>
+
+<%if @errors%>
+<%="Sorry, your review could not be created because:"%><br>
+    <%@errors.full_messages.each do |e|%>
+        <li><%=e%></li>
+    <%end%>
+<%end%>
+
 <%=form_for [book, comment] do |f|%>
 <%=f.label :title%><br>
 <%=f.text_field :title%><br>
