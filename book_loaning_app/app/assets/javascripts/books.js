@@ -1,11 +1,8 @@
 $(document).on('turbolinks:load', function(){
-    // $("#new_comment").on("submit", function(e){
-    //     alert("Submitted")
-    //     e.preventDefault()
-    // })
+
     getComments(getBookId())
 })
-let idarray = []
+let idArray = []
 
 const getComments = (id) => {
     return fetch(`http://localhost:3000/books/${id}/comments`)
@@ -27,7 +24,7 @@ const listComments = (comments) => {
         + " by " + comment.user.username + " " +
         `<a href="/books/${comment.book.id}/comments/${comment.id}">`
         + "View Comment</li>")
-        idarray.push(comment.id)
+        idArray.push(comment.id)
     })
-    return idarray
+    return idArray
 }

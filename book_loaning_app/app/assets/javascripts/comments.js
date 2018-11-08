@@ -1,11 +1,5 @@
 $(document).on('turbolinks:load', function(){
     const bookId = getBookId()
-    
-    // async function f() {
-    //     let thisThis = getComments(getBookId())
-    //     let result = await thisThis
-    //     }
-    // f();
 
     $("a.js-next").on("click", function(e){
         switchComment(e, "next", bookId);
@@ -33,16 +27,15 @@ $(document).on('turbolinks:load', function(){
 })
 
 const switchComment = function(e, dir, bookId) {
-    console.log(idarray)
+    let uniqueIdArray = [...new Set(idArray)]
     e.preventDefault();
     let nextId = parseInt($(".js-next").attr("data-commentid"))
-    console.log(nextId) 
-    console.log(["5"].findIndex("5"))
+    let currentIndex = uniqueIdArray.indexOf(nextId)
     if (dir === "next") {
-        nextId = parseInt($(".js-next").attr("data-commentid")) + 1;
+        nextId = uniqueIdArray[`${currentIndex + 1}`]
     }
     else if (dir === "prev") {
-        nextId = parseInt($(".js-next").attr("data-commentid")) - 1;
+        nextId = uniqueIdArray[`${currentIndex - 1}`]
     }
     let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
     $.get(nextUrl, function(data) {
