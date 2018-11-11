@@ -1,0 +1,15 @@
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+/home/pritckat/.rvm/rubies/ruby-2.5.1/bin/ruby -r ./siteconf20181111-19782-1na3nm1.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20181111-19782-10v3qws/bindex

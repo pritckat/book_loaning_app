@@ -1,0 +1,15 @@
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+/home/pritckat/.rvm/rubies/ruby-2.5.1/bin/ruby -r ./siteconf20181111-19782-1t4i9oy.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR=" clean
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR="
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /mnt/c/Users/Katrina/Documents/GitHub/book_loaning_app/book_loaning_app/vendor/bundle/ruby/2.5.0/gems/websocket-driver-0.7.0/ext/websocket-driver
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20181111-19782-u45cwp
