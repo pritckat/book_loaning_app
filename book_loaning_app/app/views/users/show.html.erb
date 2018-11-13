@@ -20,3 +20,7 @@
 <%Loan.loaned_to_me(@user).each do |loan|%>
     <%=link_to loan.book.title, book_path(loan.book) if loan.book%>
 <%end%>
+
+<h2>Live Coding</h2>
+<button class="alphabetize_books" href="<%=user_books_path(@user)%>">Alphabetize Books</button>
+<div class="alphabetized_books"><ul></ul></div>

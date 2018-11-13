@@ -1,18 +1,27 @@
-// $(document).on('turbolinks:load', function(){
-//     $("a.load_books").on("click", function(e){
-//         let $title = $("div.all_books")
-//         $title.html("<ol></ol>")
-//         $title.prepend("<h3>Books</h3>")
-//         //debugger
-//         $.get(this.href + ".json").success(function(json){
-//             //debugger
-//             let $ol = $("div.all_books ol")
-//             $ol.html("")
-//             json.forEach(function(book){
-//                 //debugger
-//                 $ol.append("<li>" +`<a href="/books/${book.id}">` + book.title + "</li>")
-//             })
-//         })
-//         e.preventDefault();
-//     })
-// })
+$(document).on('turbolinks:load', function(){
+    $(".alphabetize_books").on("click", function(e) {
+        // debugger
+        // console.log(this)
+        $.get(this.attributes.href.value + ".json").success(function(json) {
+            const books = sortBooks(json)
+            $(".alphabetized_books ul").html("")
+            books.forEach(book => {
+                $(".alphabetized_books ul").append("<li>" + book.title + "</li>")
+            })
+        })
+    })
+})
+
+const sortBooks = (books) => {
+    return books.sort(function(a, b) {
+        const nameA = a.title.toUpperCase()
+        const nameB = b.title.toUpperCase()
+        if (nameA < nameB) {
+            return -1;
+          }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
+    })
+}
