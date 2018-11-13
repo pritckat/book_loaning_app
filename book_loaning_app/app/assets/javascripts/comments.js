@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function(){
         switchComment(e, "prev", bookId);
     });
 
-    $("#new_reply").on("submit", function(e) {
+    $("#new_reply").on("submit", function(e) { 
         $.ajax({
             type: "POST",
             url: this.action,
@@ -37,10 +37,10 @@ const switchComment = function(e, dir, bookId) {
     else if (dir === "prev") {
         nextId = uniqueIdArray[`${currentIndex - 1}`]
     }
-    let nextUrl = "/books/" + bookId + "/comments/" + nextId +".json"
+    let nextUrl = "/books/" + bookId + "/comments/" + nextId
     $.get(nextUrl, function(data) {
     showComment(data);
-    })
+    }, "json")
 }
 const showComment = (data) => {
     $(".comment_title").text(data["title"]);
