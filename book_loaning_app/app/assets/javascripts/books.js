@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function(){
 let idArray = []
 
 const getComments = (id) => {
-    return fetch(`http://localhost:3000/books/${id}/comments`)
+    fetch(`http://localhost:3000/books/${id}/comments`)
     .then(res => res.json())
     .then(comments => {return listComments(comments)})
 }
